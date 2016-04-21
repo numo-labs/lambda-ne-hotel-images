@@ -4,13 +4,10 @@
   "description": "return the correct dimensions of images for a given viewport width",
   "main": "index.js",
   "scripts": {
-    "fixtures":"node test/_create_all_hotels_fixture.js",
-    "start": "node index.js",
-    "test": "semistandard && npm run fixtures && npm run api && npm run coverage",
+    "test": "npm run coverage",
     "deploy": "node ./node_modules/dpl/dpl.js",
     "nocov": "node ./node_modules/.bin/mocha test/api_request.test.js",
     "semistandard": "semistandard --verbose | snazzy",
-    "api": "./node_modules/.bin/mocha test/api_request.test.js",
     "main": "./node_modules/.bin/mocha test/index.test.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/ --report lcov -- -R spec",
     "check-coverage": "npm run coverage && node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100"
@@ -47,6 +44,7 @@
     "snazzy": "^3.0.0"
   },
   "semistandard": {
+    "no-cond-assign": "1",
     "globals": [
       "describe",
       "it",
@@ -54,7 +52,6 @@
     ]
   },
   "pre-commit": [
-    "semistandard",
     "check-coverage"
   ]
 }

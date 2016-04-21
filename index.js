@@ -8,6 +8,8 @@ exports.handler = function (event, context) {
       var hotel = h.split('.')[2]; // e.g: hotel:NE.wvHotelPartId.197915
       res_map[hotel] = img_map[hotel]['1280'] || img_map[hotel]['696']; // fallback
     });
+    return context.succeed(res_map);
+  } else {
+    context.fail('Please supply hotels as array');
   }
-  return context.succeed(res_map);
-}
+};

@@ -1,0 +1,60 @@
+{
+  "name": "lambda-ne-hotel-images",
+  "version": "1.0.0",
+  "description": "return the correct dimensions of images for a given viewport width",
+  "main": "index.js",
+  "scripts": {
+    "fixtures":"node test/_create_all_hotels_fixture.js",
+    "start": "node index.js",
+    "test": "semistandard && npm run fixtures && npm run api && npm run coverage",
+    "deploy": "node ./node_modules/dpl/dpl.js",
+    "nocov": "node ./node_modules/.bin/mocha test/api_request.test.js",
+    "semistandard": "semistandard --verbose | snazzy",
+    "api": "./node_modules/.bin/mocha test/api_request.test.js",
+    "main": "./node_modules/.bin/mocha test/index.test.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/ --report lcov -- -R spec",
+    "check-coverage": "npm run coverage && node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100"
+  },
+  "files_to_deploy": [
+    "package.json",
+    "index.js",
+    "/lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/numo-labs/lambda-ne-hotel-images.git"
+  },
+  "keywords": [
+    "images",
+    "mobile",
+    "desktop",
+    "lambda"
+  ],
+  "author": "Pascal & Pals @ Numo Labs.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/numo-labs/lambda-ne-hotel-images/issues"
+  },
+  "homepage": "https://github.com/numo-labs/lambda-ne-hotel-images#readme",
+  "devDependencies": {
+    "aws-lambda-test-utils": "^1.0.2",
+    "aws-sdk-mock": "^1.0.9",
+    "dpl": "2.1.0",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "pre-commit": "^1.1.2",
+    "semistandard": "^7.0.5",
+    "snazzy": "^3.0.0"
+  },
+  "semistandard": {
+    "globals": [
+      "describe",
+      "it",
+      "afterEach"
+    ]
+  },
+  "pre-commit": [
+    "semistandard",
+    "check-coverage"
+  ]
+}

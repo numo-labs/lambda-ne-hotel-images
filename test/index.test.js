@@ -8,7 +8,6 @@ var CONTEXT = {
 };
 
 var EVENT = {
-  size: 'large',
   hotels: ['hotel:NE.wvHotelPartId.197915','hotel:NE.wvHotelPartId.197941']
 };
 
@@ -16,8 +15,8 @@ describe('hotel image lookup', function () {
   it('invoke the lambda function handler', function (done) {
     CONTEXT.succeed = function () {
       // console.log(' - - - - - - - - - - - - - - - - - - - - - - - - ');
-      // console.log(arguments[0]['197915']); // the argument to context.succeed
-      assert(arguments[0]['197915'].length > 10);
+      console.log(arguments[0]); // the argument to context.succeed
+      assert(arguments[0]['hotel:NE.wvHotelPartId.197915'].length > 10);
       done();
     };
     handler(EVENT, CONTEXT);
@@ -27,7 +26,8 @@ describe('hotel image lookup', function () {
     CONTEXT.fail = function () {
       console.log(' - - - - - - - - - - - - - - - - - - - - - - - - ');
       console.log(arguments); // the argument to context.succeed
-      assert(arguments[0] === 'Please supply hotels as array');
+      var msg = 'ERROR Retrieving NE Hotel Images Please supply hotels as array';
+      assert(arguments[0] === msg);
       done();
     };
     handler({}, CONTEXT);

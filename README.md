@@ -74,7 +74,7 @@ ABC Hotel,1234,http://img.cdn.net/PVKARTO1007_5_32.jpg,32,9,Hotel part thumbnail
 ABC Hotel,1234,http://img.cdn.net/PVKARTO1006_10_51.jpg,51,10,Hotel part top wide,975,350,
 ```
 
-Run the `lib/parse_csv.js` script
+### 2. Run the `lib/parse_csv.js` script
 
 Sample output:
 
@@ -104,3 +104,39 @@ Sample output:
 ```
 
 This allows us to do a simple lookup: `img_map[hotelid]['380']`
+
+### 3. Write *Ultra-Simple* Lambda Function
+
+see: `index.js`
+
+the Lambda function accepts an `event` with a `hotels` key:
+
+```js
+event: {
+  "hotels": [
+    "hotel:NE.wvHotelPartId.197915",
+    "hotel:NE.wvHotelPartId.197941"
+  ]
+}
+```
+This is how NE Hotels are stored in the Tagging system
+
+returns:
+```js
+{
+  'hotel:NE.wvHotelPartId.197915': [
+    'http://http://img.cdn.net/AYTFLOR1023_2_30.jpg',
+    'http://http://img.cdn.net/AYTFLOR1022_2_30.jpg',
+    'http://http://img.cdn.net/AYTFLOR1002_2_30.jpg',
+    'http://http://img.cdn.net/AYTFLOR1017_2_30.jpg',
+    'http://http://img.cdn.net/AYTFLOR1010_2_30.jpg',
+    'http://http://img.cdn.net/AYTFLOR1012_2_30.jpg',
+  ],
+  'hotel:NE.wvHotelPartId.197941': [
+    'http://http://img.cdn.net/HLONS0B000010_670_13.jpg',
+    'http://http://img.cdn.net/HLONS0B000010_2_30.jpg',
+    'http://http://img.cdn.net/HLONS0B000010_3_30.jpg',
+    'http://http://img.cdn.net/HLONS0B000010_4_30.jpg',
+  ]
+}
+```

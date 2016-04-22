@@ -2,6 +2,13 @@
 
 A lambda service that returns images to match the viewport width of the client device
 
+[![Codeship](https://img.shields.io/codeship/ba3fc4a0-ea87-0133-cf2d-7a726143f84a.svg)](https://codeship.com/projects/147898/)
+[![codecov.io](https://codecov.io/github/numo-labs/lambda-ne-hotel-images/coverage.svg?branch=master)](https://codecov.io/github/numo-labs/lambda-ne-hotel-images?branch=master)
+[![Dependency Status](https://david-dm.org/numo-labs/lambda-ne-hotel-images.svg)](https://david-dm.org/numo-labs/lambda-ne-hotel-images)
+[![devDependency Status](https://david-dm.org/numo-labs/lambda-ne-hotel-images/dev-status.svg)](https://david-dm.org/numo-labs/lambda-ne-hotel-images#info=devDependencies)
+[![npm version](https://badge.fury.io/js/tag-e-geo.svg)](https://badge.fury.io/js/lambda-ne-hotel-images)
+
+
 ## Why?
 
 We don't want to return high-resolution images to a mobile device
@@ -108,6 +115,8 @@ This allows us to do a simple lookup: `img_map[hotelid]['380']`
 ### 3. Write *Ultra-Simple* Lambda Function
 
 see: `index.js`
+
+### 4. Invoke the Lambda
 
 the Lambda function accepts an `event` with a `hotels` key:
 
